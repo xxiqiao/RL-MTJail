@@ -84,7 +84,7 @@ The `run.sh` script will execute the following steps:
 4. **Cleanup**:
    - Automatically stop vLLM services after training completes
 
-### 4.4 Monitor Training
+### 4.3 Monitor Training
 
 During training, you can monitor progress through the following methods:
 
@@ -92,7 +92,7 @@ During training, you can monitor progress through the following methods:
 - **vLLM Service Logs**: `env_llm.log` and `judger_llm.log`
 
 
-## 6. Output Files
+## 5. Output Files
 
 After training completes, you can find output files in the following locations:
 
@@ -100,7 +100,7 @@ After training completes, you can find output files in the following locations:
 - **Model Checkpoints**: `checkpoints/jailbreak_grpo`
 - **Rollout Data**: `run_logs/${experiment_name}/train_rollout` and `run_logs/${experiment_name}/val_rollout`
 
-## 7. Reference Resources
+## 6. Reference Resources
 
 - **vLLM**: https://github.com/vllm-project/vllm
 - **RAGEN**: https://github.com/mll-lab-nu/RAGEN
