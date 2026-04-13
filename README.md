@@ -1,74 +1,59 @@
-# TROJail: Trajectory-Level Optimization for Multi-Turn Large Language Model Jailbreaks with Process Rewards
+<div align="center">
+    <h2>
+      TROJail: Trajectory-Level Optimization for Multi-Turn Large Language Model Jailbreaks with Process Rewards<br><br>
+      <a href="https://arxiv.org/abs/2512.07761"> <img alt="paper link" src="https://img.shields.io/badge/Paper-arXiv-red"> </a>
+    </h2>
+</div>
 
-This repository contains resources for training multi-turn dialogue jailbreak attack models.
+This is the official implementation of  [TROJail: Trajectory-Level Optimization for Multi-Turn Large Language Model Jailbreaks with Process Rewards](https://arxiv.org/abs/2512.07761), accepted as **ACL 2026 Main Conference** 🎉.
 
-## 1. Setup
+## 📚 Abstract
 
-### 1.1 Create Virtual Environment
+Large language models have seen widespread adoption, yet they remain vulnerable to multiturn jailbreak attacks, threatening their safe deployment. This has led to the task of training automated multi-turn attackers to probe model safety vulnerabilities. However, existing approaches typically rely on turn-level optimization, which is insufficient for learning long-term attack strategies. To bridge this gap, we formulate this task as a multi-turn reinforcement learning problem, directly optimizing the harmfulness of the final-turn response as the outcome reward. To address the sparse supervision of the outcome reward, we introduce TROJail, which employs two process rewards to evaluate the utility of intermediate prompts and integrate them into advantage estimation. These rewards (1) penalize overly harmful prompts that trigger the model’s refusal mechanism, and (2) encourage steering the semantic relevance of responses toward the targeted harmful content. Experimental results show improved attack success rates across multiple models and benchmarks, highlighting the effectiveness of our approach.
+
+<img src="/Users/xiongxq/Downloads/trajectory_optimization_page-0001.jpg" alt="trajectory_optimization_page-0001" style="width:40%;" />
+
+## 🛠️ Setup
+
+### Setup the Environment
 
 ```bash
-cd TROJail
 conda create --name TROJail python=3.12
 conda activate TROJail
-```
-
-### 1.2 Install Dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-## 2. Download Datasets
+Refer to [RAGEN](https://github.com/mll-lab-nu/RAGEN) for more details to setup the environment.
+
+### Prepare Datasets
 
 This project requires the following three datasets:
 
-### 2.1 HarmBench
-
-The HarmBench dataset can be downloaded from Hugging Face:
-
 ```bash
 huggingface-cli download walledai/HarmBench --local-dir data/
-```
-
-### 2.2 StrongREJECT
-
-The StrongREJECT dataset can be downloaded from https://strong-reject.readthedocs.io/.
-
-### 2.3 JailbreakBench
-
-The JailbreakBench dataset can be downloaded from Hugging Face:
-
-```bash
 huggingface-cli download JailbreakBench/JBB-Behaviors --local-dir data/
+# StrongREJECT can be downloaded from https://strong-reject.readthedocs.io/.
 ```
 
-## 3. Configure Configuration Files
+## 🔥 Run Training
 
-### 3.1 Configure `config/_7_jailbreak.yaml`
+### Edit Configuration Files
 
-Edit the `config/_7_jailbreak.yaml` file, mainly modifying the `model_path` and `es_manager` sections. Edit the `/ragen/env/jailbreak/config.py` section to set the dataset paths.
+Edit `config/_7_jailbreak.yaml`, mainly modifying the `model_path` and `es_manager` sections. Edit the `/ragen/env/jailbreak/config.py` section to set the dataset paths.
 
 Since the configuration files use Hydra, you can set data paths through command-line arguments or by modifying the configuration files.
 
-**Method 1: Set via Command-Line Arguments**
+- **Set via Command-Line Arguments**: When running `run.sh`, you can pass data paths through command-line arguments.
 
-When running `run.sh`, you can pass data paths through command-line arguments.
+- **Directly Modify Configuration Files**: You can also directly modify the corresponding configuration files.
 
-**Method 2: Directly Modify Configuration Files**
-
-You can also directly modify the corresponding configuration files.
-
-## 4. Run Training
-
-### 4.1 Run Training Script
+### Run Training Script
 
 ```bash
 bash run.sh
 ```
 
-### 4.2 Script Execution Flow
-
-The `run.sh` script will execute the following steps:
+This script will execute the following steps:
 
 1. **Start vLLM Services**:
    - Start the environment LLM service (for simulating the target model being attacked)
@@ -84,7 +69,7 @@ The `run.sh` script will execute the following steps:
 4. **Cleanup**:
    - Automatically stop vLLM services after training completes
 
-### 4.3 Monitor Training
+### Training Logs
 
 During training, you can monitor progress through the following methods:
 
@@ -92,7 +77,7 @@ During training, you can monitor progress through the following methods:
 - **vLLM Service Logs**: `env_llm.log` and `judger_llm.log`
 
 
-## 5. Output Files
+### Outputs
 
 After training completes, you can find output files in the following locations:
 
@@ -100,8 +85,20 @@ After training completes, you can find output files in the following locations:
 - **Model Checkpoints**: `checkpoints/jailbreak_grpo`
 - **Rollout Data**: `run_logs/${experiment_name}/train_rollout` and `run_logs/${experiment_name}/val_rollout`
 
-## 6. Reference Resources
+## 📎 Reference
+
+This repo builds on the following open-source resources:
 
 - **vLLM**: https://github.com/vllm-project/vllm
 - **RAGEN**: https://github.com/mll-lab-nu/RAGEN
 
+If you find TROJail useful for your research or applications, please consider **Starring** this repository and **Citing** our paper:
+
+```bibtex
+@article{xiong2025trojail,
+  title={TROJail: Trajectory-Level Optimization for Multi-Turn Large Language Model Jailbreaks with Process Rewards},
+  author={Xiong, Xiqiao and Li, Ouxiang and Liu, Zhuo and Li, Moxin and Shi, Wentao and Zhu, Fengbin and Wang, Qifan and Feng, Fuli},
+  journal={arXiv preprint arXiv:2512.07761},
+  year={2025}
+}
+```
