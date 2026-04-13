@@ -11,7 +11,11 @@ This is the official implementation of  [TROJail: Trajectory-Level Optimization 
 
 Large language models have seen widespread adoption, yet they remain vulnerable to multiturn jailbreak attacks, threatening their safe deployment. This has led to the task of training automated multi-turn attackers to probe model safety vulnerabilities. However, existing approaches typically rely on turn-level optimization, which is insufficient for learning long-term attack strategies. To bridge this gap, we formulate this task as a multi-turn reinforcement learning problem, directly optimizing the harmfulness of the final-turn response as the outcome reward. To address the sparse supervision of the outcome reward, we introduce TROJail, which employs two process rewards to evaluate the utility of intermediate prompts and integrate them into advantage estimation. These rewards (1) penalize overly harmful prompts that trigger the model’s refusal mechanism, and (2) encourage steering the semantic relevance of responses toward the targeted harmful content. Experimental results show improved attack success rates across multiple models and benchmarks, highlighting the effectiveness of our approach.
 
-<img src="./assets/trajectory_optimization_page-0001.jpg" alt="trajectory_optimization_page-0001" style="width:40%;" />
+<p align="center">
+  <img src="./assets/trajectory_optimization_page-0001.jpg"
+       alt="trajectory_optimization_page-0001"
+       width="40%">
+</p>
 
 ## 🛠️ Setup
 
