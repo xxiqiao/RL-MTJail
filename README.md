@@ -99,10 +99,11 @@ This repo builds on the following open-source resources:
 If you find TROJail useful for your research or applications, please consider **Starring** this repository and **Citing** our paper:
 
 ```bibtex
-@article{xiong2025trojail,
-  title={TROJail: Trajectory-Level Optimization for Multi-Turn Large Language Model Jailbreaks with Process Rewards},
+@inproceedings{xiong2026trojail,
+  title={Trojail: Trajectory-level optimization for multi-turn large language model jailbreaks with process rewards},
   author={Xiong, Xiqiao and Li, Ouxiang and Liu, Zhuo and Li, Moxin and Shi, Wentao and Zhu, Fengbin and Wang, Qifan and Feng, Fuli},
-  journal={arXiv preprint arXiv:2512.07761},
-  year={2025}
+  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={48086--48109},
+  year={2026}
 }
 ```
